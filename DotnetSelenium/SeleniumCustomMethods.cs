@@ -1,0 +1,28 @@
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DotnetSelenium
+{
+    public class SeleniumCustomMethods
+    {
+        public static void Click(IWebDriver driver, By locator)
+        {
+            driver.FindElement(locator).Click();
+        }
+
+        public static void EAWebstie_Login(IWebDriver driver, WebDriverWait wait)
+        {
+            driver.Navigate().GoToUrl("http://eaapp.somee.com/");
+            wait.Until(d => d.FindElement(By.Id("loginLink"))).Click();
+            wait.Until(d => d.FindElement(By.Name("UserName"))).SendKeys("admin");
+            driver.FindElement(By.Name("Password")).SendKeys("password");
+            driver.FindElement(By.CssSelector("input[type='submit']")).Click();
+
+        }
+    }
+}

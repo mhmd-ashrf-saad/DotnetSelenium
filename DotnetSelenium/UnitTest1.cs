@@ -38,20 +38,8 @@ namespace DotnetSelenium
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             driver.Manage().Window.Maximize();
 
-            // Navigate to the EA App website
-            driver.Navigate().GoToUrl("http://eaapp.somee.com/");
 
-            // Click the login link
-            wait.Until(d => d.FindElement(By.Id("loginLink"))).Click();
-
-            // Enter username
-            wait.Until(d => d.FindElement(By.Name("UserName"))).SendKeys("admin");
-
-            // Enter password
-            driver.FindElement(By.Name("Password")).SendKeys("password");
-
-            // Click login button
-            driver.FindElement(By.CssSelector("input[type='submit']")).Click();
+            SeleniumCustomMethods.EAWebstie_Login(driver, wait);
 
             // Assert: Verify login was successful by checking for the logout link
             IWebElement logoutLink = wait.Until(d => d.FindElement(By.LinkText("Log off")));
