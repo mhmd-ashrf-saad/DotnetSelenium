@@ -58,5 +58,18 @@ namespace DotnetSelenium
             Assert.IsTrue(logoutLink.Displayed, "Login was not successful - logout link not found.");
         }
 
+        [Test]
+        public void Working_With_Advanced_Controls()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Manage().Window.Maximize();
+
+            driver.Navigate().GoToUrl("http://eaapp.somee.com/Employee/Create");
+
+            var selectElement= new SelectElement(driver.FindElement(By.Name("Grade")));
+            selectElement.SelectByText("Middle");
+
+        }
+
     }
 }
