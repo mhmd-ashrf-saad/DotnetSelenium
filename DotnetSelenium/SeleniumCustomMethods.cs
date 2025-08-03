@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace DotnetSelenium
 {
@@ -23,6 +24,15 @@ namespace DotnetSelenium
             driver.FindElement(By.Name("Password")).SendKeys("password");
             driver.FindElement(By.CssSelector("input[type='submit']")).Click();
 
+        }
+
+        public static void MultiSelectELements(IWebDriver driver, By locator, string[] values)
+        {
+            SelectElement multiselect = new SelectElement(driver.FindElement(locator));
+            foreach (var value in values)
+            {
+                multiselect.SelectByValue(value);
+            }
         }
     }
 }
