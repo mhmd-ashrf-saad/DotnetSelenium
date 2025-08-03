@@ -34,5 +34,20 @@ namespace DotnetSelenium
                 multiselect.SelectByValue(value);
             }
         }
+
+        public static List<string> GetAllSelectedLists(IWebDriver driver, By locator)
+        {
+            List<string> options = new List<string>();
+            SelectElement multiSelect = new SelectElement(driver.FindElement(locator));
+
+            IList<IWebElement> selectedOption = multiSelect.AllSelectedOptions;
+
+            foreach (IWebElement option in selectedOption)
+            {
+                options.Add(option.Text);
+            }
+
+            return options;
+        }
     }
 }
