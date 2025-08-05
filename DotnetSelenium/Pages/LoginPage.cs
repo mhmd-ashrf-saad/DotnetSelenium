@@ -19,16 +19,14 @@ namespace DotnetSelenium.Pages
 
         public void ClickLogin()
         {
-            SeleniumCustomMethods.Click(LoginLink);
-
+            LoginLink.Click();
         }
 
         public void Login(string username, string password)
         {
-            TxtUser.SendKeys(username);
-            TxtPassword.SendKeys(password);
-            SeleniumCustomMethods.Submit(BtnLogin);
-
+            TxtUser.EnterText(username);
+            TxtPassword.EnterText(password);
+            BtnLogin.Submit();
         }
 
     }

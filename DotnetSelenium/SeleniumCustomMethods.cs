@@ -1,22 +1,16 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
 
 namespace DotnetSelenium
 {
-    public class SeleniumCustomMethods
+    public static class SeleniumCustomMethods
     {
-        public static void Click(IWebElement locator)
+
+
+        public static void EnterText(this IWebElement locator, string text)
         {
-            locator.Click();
-        }public static void Submit(IWebElement locator)
-        {
-            locator.Submit();
+            locator.Clear();
+            locator.SendKeys(text);
         }
 
         public static void EAWebstie_Login(IWebDriver driver, WebDriverWait wait)
