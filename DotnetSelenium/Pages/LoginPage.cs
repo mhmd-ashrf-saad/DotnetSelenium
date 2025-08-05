@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace DotnetSelenium.Pages
 {
@@ -16,23 +11,25 @@ namespace DotnetSelenium.Pages
             this.driver = driver;
         }
 
-         IWebElement LoginLink => driver.FindElement(By.Id("loginLink"));
+        IWebElement LoginLink => driver.FindElement(By.Id("loginLink"));
 
-         IWebElement TxtUser => driver.FindElement(By.Id("UserName"));
-         IWebElement TxtPassword => driver.FindElement(By.Id("Password"));
-         IWebElement BtnLogin => driver.FindElement(By.CssSelector(".btn"));
+        IWebElement TxtUser => driver.FindElement(By.Id("UserName"));
+        IWebElement TxtPassword => driver.FindElement(By.Id("Password"));
+        IWebElement BtnLogin => driver.FindElement(By.CssSelector(".btn"));
 
-         public void ClickLogin()
-         {
-             LoginLink.Click();
-         }
+        public void ClickLogin()
+        {
+            SeleniumCustomMethods.Click(LoginLink);
 
-         public void Login(string username, string password)
-         {
-             TxtUser.SendKeys(username);
-             TxtPassword.SendKeys(password);
-             BtnLogin.Submit();
-         }
+        }
+
+        public void Login(string username, string password)
+        {
+            TxtUser.SendKeys(username);
+            TxtPassword.SendKeys(password);
+            SeleniumCustomMethods.Submit(BtnLogin);
+
+        }
 
     }
 }

@@ -59,7 +59,7 @@ namespace DotnetSelenium
 
             driver.Navigate().GoToUrl("http://eaapp.somee.com/Employee/Create");
 
-            var selectElement= new SelectElement(driver.FindElement(By.Name("Grade")));
+            var selectElement = new SelectElement(driver.FindElement(By.Name("Grade")));
             selectElement.SelectByText("Middle");
 
         }
@@ -74,7 +74,7 @@ namespace DotnetSelenium
 
             loginPage.ClickLogin();
 
-            loginPage.Login("admin","password");
+            loginPage.Login("admin", "password");
         }
 
     }

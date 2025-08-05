@@ -11,9 +11,12 @@ namespace DotnetSelenium
 {
     public class SeleniumCustomMethods
     {
-        public static void Click(IWebDriver driver, By locator)
+        public static void Click(IWebElement locator)
         {
-            driver.FindElement(locator).Click();
+            locator.Click();
+        }public static void Submit(IWebElement locator)
+        {
+            locator.Submit();
         }
 
         public static void EAWebstie_Login(IWebDriver driver, WebDriverWait wait)
