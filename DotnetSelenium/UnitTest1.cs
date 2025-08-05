@@ -1,3 +1,4 @@
+using DotnetSelenium.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools.V136.Input;
@@ -61,6 +62,19 @@ namespace DotnetSelenium
             var selectElement= new SelectElement(driver.FindElement(By.Name("Grade")));
             selectElement.SelectByText("Middle");
 
+        }
+
+        [Test]
+        public void TestWithPom()
+        {
+            var driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://eaapp.somee.com/");
+            //POM initialization
+            LoginPage loginPage = new LoginPage(driver);
+
+            loginPage.ClickLogin();
+
+            loginPage.Login("admin","password");
         }
 
     }
