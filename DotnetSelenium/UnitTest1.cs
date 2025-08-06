@@ -1,32 +1,50 @@
 using DotnetSelenium.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.DevTools.V136.Input;
 using OpenQA.Selenium.Support.UI;
 
 namespace DotnetSelenium
 {
+
+    [TestFixture("admin", "password")]
+    [TestFixture("admin", "password2")]
+    [TestFixture("admin", "password3")]
     public class Tests
     {
+
+        private IWebDriver _driver;
+        private readonly string userName;
+        private readonly string password;
+
+        public Tests(string userName, string password)
+        {
+            this.userName = userName;
+            this.password = password;
+        }
+
         [SetUp]
         public void Setup()
         {
+            //1. Create a new instance of Selenium Web 
+            _driver = new ChromeDriver();
+
+            //2. Navigate to the URL
+            _driver.Navigate().GoToUrl("https://www.google.com/");
+
+            //2a. Maximize the browser window
+            _driver.Manage().Window.Maximize();
         }
+
+
 
         [Test]
         public void Should_Open_Browser_And_Search_Selenium()
         {
-            //1. Create a new instance of Selenium Web Driver
-            IWebDriver driver = new ChromeDriver();
 
-            //2. Navigate to the URL
-            driver.Navigate().GoToUrl("https://www.google.com/");
 
-            //2a. Maximize the browser window
-            driver.Manage().Window.Maximize();
 
             //3. Find the element
-            IWebElement webElement = driver.FindElement(By.Name("q"));
+            IWebElement webElement = _driver.FindElement(By.Name("q"));
 
             //4. Type in the element
             webElement.SendKeys("Selenium");
@@ -76,6 +94,11 @@ namespace DotnetSelenium
 
             loginPage.Login("admin", "password");
         }
-
+        [TearDown]
+        public void TearDown()
+        {
+            _driver?.Quit();
+            _driver?.Dispose();
+        }
     }
 }
